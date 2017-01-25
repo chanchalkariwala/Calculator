@@ -15,17 +15,19 @@
         android:layout_weight="0.3">
 
         <TextView
-            android:textSize="32dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
+            android:padding="10dp"
+            android:textSize="32dp"
             android:id="@+id/expression"/>
 
         <TextView
-            android:textSize="32dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="0.5"
+            android:padding="10dp"
+            android:textSize="32dp"
             android:id="@+id/value"/>
 
     </LinearLayout>
@@ -36,140 +38,156 @@
         android:layout_height="0dp"
         android:layout_weight="0.7">
 
-        <GridLayout
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.75"
-            android:columnCount="3"
-            android:rowCount="4">
+            android:layout_weight="0.7"
+            android:padding="0dp"
+            android:layout_margin="0dp">
 
-            <Button
-                android:text="1"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:tag="1"
-                android:onClick="append"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25">
 
-            <Button
-                android:text="2"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:tag="2"
-                android:onClick="append"/>
+                <TextView
+                    style="@style/NumberView"
+                    android:text="1"
+                    android:tag="1"
+                    android:onClick="append"/>
 
-            <Button
-                android:text="3"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:tag="3"
-                android:onClick="append"/>
+                <TextView
+                    style="@style/NumberView"
+                    android:text="2"
+                    android:tag="2"
+                    android:onClick="append"/>
 
-            <Button
-                android:text="4"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:tag="4"
-                android:onClick="append"/>
+                <TextView
+                    style="@style/NumberView"
+                    android:text="3"
+                    android:tag="3"
+                    android:onClick="append"/>
 
-            <Button
-                android:text="5"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:tag="5"
-                android:onClick="append"/>
+            </LinearLayout>
 
-            <Button
-                android:text="6"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:tag="6"
-                android:onClick="append"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25">
 
-            <Button
-                android:text="7"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:tag="7"
-                android:onClick="append"/>
+                <TextView
+                    style="@style/NumberView"
+                    android:text="4"
+                    android:tag="4"
+                    android:onClick="append"/>
 
-            <Button
-                android:text="8"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:tag="8"
-                android:onClick="append"/>
+                <TextView
+                    style="@style/NumberView"
+                    android:text="5"
+                    android:tag="5"
+                    android:onClick="append"/>
 
-            <Button
-                android:text="9"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:tag="9"
-                android:onClick="append"/>
+                <TextView
+                    style="@style/NumberView"
+                    android:text="6"
+                    android:tag="6"
+                    android:onClick="append"/>
 
-            <Button
-                android:text="."
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:tag="."
-                android:onClick="append"/>
+            </LinearLayout>
 
-            <Button
-                android:text="0"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:tag="0"
-                android:onClick="append"/>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25">
 
-            <Button
-                android:text="="
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:onClick="evaluate"/>
+                <TextView
+                    style="@style/NumberView"
+                    android:text="7"
+                    android:tag="7"
+                    android:onClick="append"/>
 
-        </GridLayout>
+                <TextView
+                    style="@style/NumberView"
+                    android:text="8"
+                    android:tag="8"
+                    android:onClick="append"/>
 
-        <GridLayout
+                <TextView
+                    style="@style/NumberView"
+                    android:text="9"
+                    android:tag="9"
+                    android:onClick="append"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.25">
+
+                <TextView
+                    style="@style/NumberView"
+                    android:text="."
+                    android:tag="."
+                    android:onClick="append"/>
+
+                <TextView
+                    style="@style/NumberView"
+                    android:text="0"
+                    android:tag="0"
+                    android:onClick="append"/>
+
+                <TextView
+                    style="@style/NumberView"
+                    android:text="="
+                    android:onClick="evaluate"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.25"
-            android:columnCount="1"
-            android:rowCount="5">
+            android:layout_weight="0.3">
 
-            <Button
+            <TextView
+                style="@style/OperatorView"
                 android:text="DEL"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:onClick="clear"/>
+                android:onClick="clear" />
 
-            <Button
+            <TextView
+                style="@style/OperatorView"
                 android:text="/"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
                 android:tag="/"
                 android:onClick="append"/>
 
-            <Button
+            <TextView
+                style="@style/OperatorView"
                 android:text="*"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
                 android:tag="*"
                 android:onClick="append"/>
 
-            <Button
+            <TextView
+                style="@style/OperatorView"
                 android:text="-"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
                 android:tag="-"
                 android:onClick="append"/>
 
-            <Button
+            <TextView
+                style="@style/OperatorView"
                 android:text="+"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
                 android:tag="+"
                 android:onClick="append"/>
 
-        </GridLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
