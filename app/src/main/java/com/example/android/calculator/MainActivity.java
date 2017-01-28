@@ -21,25 +21,45 @@ public class MainActivity extends AppCompatActivity {
 
     public void append(View pView)
     {
+        //Set Value to blank
+        ((TextView)findViewById(R.id.value)).setText("");
+
+        //Concat provided operator/operand to the Expression
         sstrExpression = sstrExpression.concat((String)pView.getTag());
         ((TextView)findViewById(R.id.expression)).setText(sstrExpression);
-        ((TextView)findViewById(R.id.value)).setText("");
     }
 
     public void clear(View pView)
     {
+        //Set Expression to blank
         sstrExpression = "";
         ((TextView)findViewById(R.id.expression)).setText(sstrExpression);
-        ((TextView)findViewById(R.id.value)).setText(sstrExpression);
+
+        //Set Value to blank
+        ((TextView)findViewById(R.id.value)).setText("");
     }
 
     public void evaluate(View pView)
     {
-        Expression lExpression = new ExpressionBuilder(sstrExpression).build();
-        Double lValue = lExpression.evaluate();
+        if(sstrExpression == null || sstrExpression.isEmpty() == true)
+            return;
 
+        String lstrExpression = sstrExpression;
+
+        //Evaluation being done. Set Expression to blank.
         sstrExpression = "";
         ((TextView)findViewById(R.id.expression)).setText(sstrExpression);
+
+        Expression lExpression = new ExpressionBuilder(lstrExpression).build();
+
+        if(lExpression.validate().isValid() == false)
+        {
+            ((TextView)findViewById(R.id.value)).setText("BAD EXPRESSION");
+            return;
+        }
+
+        Double lValue = lExpression.evaluate();
         ((TextView)findViewById(R.id.value)).setText(lValue.toString());
+
     }
 }
