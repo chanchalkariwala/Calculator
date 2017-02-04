@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.3">
+        android:layout_weight="0.4">
 
         <TextView
             android:layout_width="match_parent"
@@ -20,7 +20,8 @@
             android:layout_weight="0.5"
             android:padding="10dp"
             android:textSize="32dp"
-            android:id="@+id/expression"/>
+            android:id="@+id/expression"
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -28,7 +29,8 @@
             android:layout_weight="0.5"
             android:padding="10dp"
             android:textSize="32dp"
-            android:id="@+id/value"/>
+            android:id="@+id/value"
+            android:textColor="@android:color/black"/>
 
     </LinearLayout>
 
@@ -36,7 +38,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.7">
+        android:layout_weight="0.6">
 
         <LinearLayout
             android:orientation="vertical"
@@ -145,7 +147,7 @@
                 <TextView
                     style="@style/NumberView"
                     android:text="="
-                    android:onClick="evaluate"/>
+                    android:onClick="showValue"/>
 
             </LinearLayout>
 
@@ -159,9 +161,9 @@
             android:layout_weight="0.3">
 
             <TextView
+                android:id="@+id/clear_button"
                 style="@style/OperatorView"
-                android:text="DEL"
-                android:onClick="clear" />
+                android:text="DEL" />
 
             <TextView
                 style="@style/OperatorView"

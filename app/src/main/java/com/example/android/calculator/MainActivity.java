@@ -1,7 +1,7 @@
 package com.example.android.calculator;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,49 +17,119 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        TextView lClearView = (TextView) findViewById(R.id.clear_button);
+
+        lClearView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Set Value to blank
+                updateValue("");
+
+                if(sstrExpression == null || sstrExpression.isEmpty()) {
+                    return;
+                }
+
+                sstrExpression = sstrExpression.substring(0, sstrExpression.length()-1);
+                updateExpression(sstrExpression);
+            }
+        });
+
+        lClearView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v)
+            {
+                updateExpression("");
+                updateValue("");
+                return true;
+            }
+        });
     }
 
     public void append(View pView)
     {
-        //Set Value to blank
-        ((TextView)findViewById(R.id.value)).setText("");
+        String lValue = String.valueOf(((TextView) findViewById(R.id.value)).getText());
+
+        updateValue("");
 
         //Concat provided operator/operand to the Expression
-        sstrExpression = sstrExpression.concat((String)pView.getTag());
-        ((TextView)findViewById(R.id.expression)).setText(sstrExpression);
+        sstrExpression = sstrExpression.concat(lValue + (String)pView.getTag());
+        updateExpression(sstrExpression);
     }
 
-    public void clear(View pView)
+    public void showValue(View pView)
     {
-        //Set Expression to blank
-        sstrExpression = "";
-        ((TextView)findViewById(R.id.expression)).setText(sstrExpression);
-
-        //Set Value to blank
-        ((TextView)findViewById(R.id.value)).setText("");
+        evaluate();
     }
 
-    public void evaluate(View pView)
+    public void evaluate()
     {
         if(sstrExpression == null || sstrExpression.isEmpty() == true)
             return;
 
         String lstrExpression = sstrExpression;
 
-        //Evaluation being done. Set Expression to blank.
-        sstrExpression = "";
-        ((TextView)findViewById(R.id.expression)).setText(sstrExpression);
+        updateExpression("");
 
         Expression lExpression = new ExpressionBuilder(lstrExpression).build();
 
         if(lExpression.validate().isValid() == false)
         {
-            ((TextView)findViewById(R.id.value)).setText("BAD EXPRESSION");
+            lstrExpression = lstrExpression.substring(0, lstrExpression.length()-1);
+
+            lExpression = new ExpressionBuilder(lstrExpression).build();
+
+            if(lExpression.validate().isValid() == false)
+            {
+                updateValue("BAD EXPRESSION");
+            }
             return;
         }
 
-        Double lValue = lExpression.evaluate();
-        ((TextView)findViewById(R.id.value)).setText(lValue.toString());
+        String lValueDisplay = "";
+        try
+        {
+            Double lValue = lExpression.evaluate();
 
+            if ((lValue == Math.floor(lValue)) && !Double.isInfinite(lValue))
+            {
+                Long llongvalue = lValue.longValue();
+                lValueDisplay = llongvalue.toString();
+            }
+            else
+            {
+                lValueDisplay = lValue.toString();
+            }
+
+        }
+        catch (Exception lException)
+        {
+            lValueDisplay = lException.getLocalizedMessage();
+        }
+
+        updateValue(lValueDisplay);
+    }
+
+    public void updateExpression(String pValue)
+    {
+        sstrExpression = pValue;
+
+        if(sstrExpression == null)
+        {
+            sstrExpression = "";
+        }
+
+        ((TextView)findViewById(R.id.expression)).setText(sstrExpression);
+    }
+
+    public void updateValue(String pValue)
+    {
+        if(pValue == null)
+        {
+            sstrExpression = "";
+        }
+
+        ((TextView)findViewById(R.id.value)).setText(pValue);
     }
 }
