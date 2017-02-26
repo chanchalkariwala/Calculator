@@ -51,6 +51,26 @@ public class MainActivity extends AppCompatActivity {
     {
         String lValue = String.valueOf(((TextView) findViewById(R.id.value)).getText());
 
+        try
+        {
+            Double.parseDouble(lValue);
+
+        }
+        catch(NumberFormatException lException)
+        {
+            lValue = "";
+        }
+
+        try
+        {
+            Double.parseDouble((String)pView.getTag());
+            lValue = "";
+        }
+        catch(NumberFormatException lException)
+        {
+
+        }
+
         updateValue("");
 
         //Concat provided operator/operand to the Expression

@@ -7,25 +7,7 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <!--
-    <style name="NumberView">
-        <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">32dp</item>
-        <item name="android:background">#757575</item>
-        <item name="android:textColor">#ffffff</item>
-    </style>
 
-    <style name="NumberView.OperatorView">
-        <item name="textSize">30dp</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">0dp</item>
-        <item name="android:background">#353535</item>
-        <item name="android:textColor">#ffffff</item>
-    </style>
-    -->
     <style name="OperatorView">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0dp</item>
